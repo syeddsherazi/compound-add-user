@@ -1,0 +1,42 @@
+<div class="container parent">
+  <button type="button" class="btn btn-default" style="margin: 10px" (click)="getUsers()">Refresh List</button>
+  <div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissible]="true" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{
+      alert.msg }}</alert>
+  </div>
+  <table class="table" style="margin-top: 20px">
+    <thead>
+      <tr>
+        <th style="width:60%">Email</th>
+        <th style="width:20%">File</th>
+        <th style="width:20%">Delete User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="viewFile(template,user)">View</button></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteFile(user)">Delete</button></td>
+      </tr>
+      <tr *ngIf="!users.length">
+        <td colspan="3" class="hidden-xs text-center">
+          No Users
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="isLoading" id="loader-wrapper">
+    <div id="loader"></div>
+  </div>
+  <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">JSON S3 File</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ngx-json-viewer [json]="userObject"></ngx-json-viewer>
+      </div>
+    </ng-template>
+</div>

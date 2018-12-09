@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="main-title">
+      <h1><a href="#">{{title}}</a></h1>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="nav nav-pills">
+      <li class="nav-item ">
+        <a class="nav-link" [ngClass]="{'active': isActive('users')}" [routerLink]="['/users']">Users List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active': isActive('add-user')}" [routerLink]="['/add-user']">Add User</a>
+      </li>
+    </ul>
+  
+  </nav>
+<router-outlet></router-outlet>
