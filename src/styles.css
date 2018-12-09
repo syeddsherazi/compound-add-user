@@ -84,3 +84,19 @@
           transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
       }
   }
+
+.width-20{
+    width:20%
+}
+
+.width-60{
+    width:60%
+}
+
+.table-margin{
+    margin-top: 20px
+}
+
+.button-margin{
+    margin: 10px
+}

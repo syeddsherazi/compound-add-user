@@ -23,6 +23,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
+    window.scrollTo(0, 0);
     this.isLoading = true;
     this.api.getUsers().subscribe(res => {
       this.isLoading = false;
@@ -30,6 +31,7 @@ export class UsersComponent implements OnInit {
     }, err => {
       this.isLoading = false;
       this.users = [];
+      this.addErrorAlert(err, 'danger');
     });
   }
 
@@ -40,8 +42,8 @@ export class UsersComponent implements OnInit {
       this.userObject = res;
       this.modalRef = this.modalService.show(template);
     }, err => {
+      this.getUsers();
       this.addErrorAlert(err, 'danger');
-      this.isLoading = false;
     });
   }
 
@@ -54,7 +56,6 @@ export class UsersComponent implements OnInit {
     }, err => {
       this.addErrorAlert(err, 'danger');
       this.getUsers();
-      this.isLoading = false;
     });
   }
 
